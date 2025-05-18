@@ -1,6 +1,7 @@
 import json
 import asyncio
 import aiohttp
+import re
 
 with open('config.json', 'r') as f:
     config = json.load(f)
@@ -12,6 +13,22 @@ HEADERS = {
     "Authorization": TOKEN,
     "Content-Type": "application/json"
 }
+
+def parse_interval(interval):
+    match = re.match(r"(\d+)([smhd])", interval)
+    if not match:
+        raise ValueError(f"Invalid interval format: {interval}")
+    value, unit = int(match.group(1)), match.group(2)
+    if unit == "s":
+        return value
+    elif unit == "m":
+        return value * 60
+    elif unit == "h":
+        return value * 3600
+    elif unit == "d":
+        return value * 86400
+    else:
+        raise ValueError(f"Unknown time unit: {unit}")
 
 async def send_and_delete_message(channel_id, message, delete):
     url = f"https://discord.com/api/v9/channels/{channel_id}/messages"
@@ -47,7 +64,7 @@ async def main():
         message_loop(
             entry['channel_id'],
             entry['message'],
-            entry['interval_seconds'],
+            parse_interval(entry['interval']),
             entry.get('delete', False)
         )
         for entry in MESSAGES

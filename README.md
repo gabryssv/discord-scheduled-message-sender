@@ -9,7 +9,7 @@ Plik `config.json` zawiera ustawienia wymagane do działania skryptu:
 - `messages`: Lista wiadomości do wysłania. Każdy element listy zawiera:
   - `channel_id`: ID kanału, na który wiadomość ma zostać wysłana.
   - `message`: Treść wiadomości.
-  - `interval_seconds`: Odstęp czasu (w sekundach) pomiędzy wysyłaniem wiadomości.
+  - `interval`: Odstęp czasu w formacie `10s`, `10m`, `10h`, `10d`.
   - `delete`: (opcjonalne) Czy wiadomość ma zostać usunięta po wysłaniu (wartość `true` lub `false`).
 
 Przykład pliku `config.json`:
@@ -20,7 +20,7 @@ Przykład pliku `config.json`:
     {
       "channel_id": 1234567890123456789,
       "message": "Przykładowa wiadomość",
-      "interval_seconds": 10,
+      "interval": "10s",
       "delete": true
     }
   ]
@@ -38,7 +38,7 @@ The `config.json` file contains the settings required for the script to work:
 - `messages`: A list of messages to send. Each list item includes:
   - `channel_id`: The ID of the channel where the message will be sent.
   - `message`: The content of the message.
-  - `interval_seconds`: The interval (in seconds) between sending messages.
+  - `interval`: Time interval in the format `10s`, `10m`, `10h`, `10d`.
   - `delete`: (optional) Whether the message should be deleted after being sent (`true` or `false`).
 
 Example `config.json` file:
@@ -49,7 +49,7 @@ Example `config.json` file:
     {
       "channel_id": 1234567890123456789,
       "message": "Example message",
-      "interval_seconds": 10,
+      "interval": "10s",
       "delete": true
     }
   ]
