@@ -1,0 +1,17 @@
+{
+  "token": "YOUR_TOKEN",
+  "messages": [
+    {
+      "channel_id": 1234567890123456789,
+      "message": "MESSAGE_CONTENT",
+      "interval_seconds": 10,
+      "delete": true
+    },
+    {
+      "channel_id": 1234567890123456789,
+      "message": "MESSAGE CONTENT",
+      "interval_seconds": 20,
+      "delete": false
+    }
+  ]
+}
